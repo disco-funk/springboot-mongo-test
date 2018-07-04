@@ -1,6 +1,9 @@
 FROM openjdk:10
 
-COPY ./build/libs/gs-accessing-mongodb-data-rest-0.1.0.jar /usr/src/app.jar
+ARG RELEASE_VERSION
+ENV RELEASE_VERSION ${RELEASE_VERSION}
+LABEL release_version=${RELEASE_VERSION}
+COPY ./build/libs/springboot-mongo-test-${RELEASE_VERSION}.jar /usr/src/springboot-mongo-test-${RELEASE_VERSION}.jar
 WORKDIR /usr/src
 EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT java -jar springboot-mongo-test-${RELEASE_VERSION}.jar

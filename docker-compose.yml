@@ -10,7 +10,10 @@ services:
   app:
     container_name: app
     restart: always
-    build: .
+    build:
+      context: .
+      args:
+        RELEASE_VERSION: "2.0.0-SNAPSHOT"
     ports:
       - 8080:8080
     links:
